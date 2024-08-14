@@ -8,12 +8,16 @@ services:
       - "127.0.0.1:8069:8069"
     volumes:
       - ./odoo_data:/var/lib/odoo
+    networks:
+      - odooerpnet
+
   postgres:
     image: postgres:13
     env_file: .env
     volumes:
       - ./db_data:/var/lib/postgresql/data/pgdata
+    networks:
+      - odooerpnet
 
-# volumes:
-#   data:
-#   db:
+networks:
+  odooerpnet:
